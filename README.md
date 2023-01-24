@@ -12,7 +12,7 @@ I soon got tired of searching for the n-th time for "how to drop a column in a p
 
 This file consists of examples of code with explanations.
 
-The examples of code are most often adapted from sites like stackoverflow, geeksforgeeks and random internet blogs, as well as from different excercises and official documentation. If an example of code is here, it means that I have tried it myself and it worked for me (no copypasting without checking).[1]
+The examples of code are most often adapted from sites like [Stackoverflow](https://stackoverflow.com/), [Geeksforgeeks](https://www.geeksforgeeks.org/) and random internet blogs, as well as from different excercises and official documentation. If an example of code is here, it means that I have tried it myself and it worked for me (no copypasting without checking).[1]
 
 I tried to give explicit names to variables where I thought that it would make the code easier to understand.
 
@@ -21,5 +21,7 @@ In many cases, I added comments explaining syntax, data types that are being man
 I also included images where they help to understand what is going on.
 
 I intend to go on adding and correcting this repo as I continue my learning, and I hope it will be useful for others, too.
+
+
 
 [1] Disclaimer: it worked on my PC with my settings, python versions, dependencies etc. 
