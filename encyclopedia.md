@@ -25,9 +25,11 @@ Shift+Tab to remove tab before line of code
 ![dating](enc_images/vince-fleming-8kDJohzgeC0-unsplash_cropped.jpg)
 ```
 Which gives the following result:
+
 ![dating](enc_images//vince-fleming-8kDJohzgeC0-unsplash_cropped.jpg)
 
-
+Photo by <a href="https://unsplash.com/@vincefleming?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Vince Fleming</a> on <a href="https://unsplash.com/photos/8kDJohzgeC0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+ 
 ## Python itself (pure)
 
 ### How to check if a calculation is correct
