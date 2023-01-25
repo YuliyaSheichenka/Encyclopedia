@@ -13,6 +13,21 @@ template to use for examples of code:
 
 Shift+Tab to remove tab before line of code
 
+## Markdown
+
+### How to insert an image into a markdown file
+
+```python
+# The syntax is the following:
+![image_name](path_to_image)
+
+# For example:
+![dating](enc_images/vince-fleming-8kDJohzgeC0-unsplash_cropped.jpg)
+```
+Which gives the following result:
+![dating](enc_images//vince-fleming-8kDJohzgeC0-unsplash_cropped.jpg)
+
+
 ## Python itself (pure)
 
 ### How to check if a calculation is correct
@@ -63,7 +78,7 @@ text.split("the", maxsplit=1)
 ````
 
 
-### How to split text using sevearl delimiters
+### How to split text using several delimiters
 
 ````python
 
@@ -446,7 +461,7 @@ array_name.shape
 
 ````
 
-### How to understand the shape of an array (synthax)
+### How to understand the shape of an array (syntax)
 
 ````python
 
@@ -1010,6 +1025,35 @@ plt.show()
 # no variable for figure is created and underscore is used instead of the name of the variable.
 
 ````
+
+### How to assign specific colors to each boxplot in plotly
+
+```python
+
+# I had a dataframe named "df_iid" presenting results of a speed dating experiment. Each line of the dataframe represented a participant, 
+# and for each participant, gender was indicated in the column "gender_name" (with values "Male" or "Female") and age in the column "age".
+# I wanted to make a plot with two boxplots to show the distribution of ages for participants of each gender.
+import plotly.express as px
+fig = px.box(df_iid, x="gender_name", y="age", color="gender_name")
+fig.show()
+
+```
+Result of the above code:
+
+![boxplot_default_colors](enc_images//boxplot_default_colors.png)
+
+Plotly uses a default color palette for graphs, but in my case I wanted to stick to stereotypes as I found that blue color for women and red color for men might be confusing.
+
+In such a case, a "color_discrete_sequence" parameter can be specified to indicate the colors you want to use. You can first check the order of the boxplots in the image and then list hex codes for colors you want to assign to each boxplot in the same order. 
+
+```python
+import plotly.express as px
+fig = px.box(df_iid, x="gender_name", y="age", color="gender_name", color_discrete_sequence=["#F78FE4", "#08C4FC"]) # the first hex code is for the pink color, the second one is for the blue color
+fig.show()
+```
+Result of the above code:
+
+![boxplot_ad_hoc_colors](enc_images//boxplot_ad_hoc_colors.png)
 
 ## GitHub 
 
