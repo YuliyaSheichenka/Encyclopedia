@@ -914,7 +914,7 @@ coefficients_lasso = pd.DataFrame(data = data_dict_lasso)
 coefficients_lasso.head()
 ````
 
-![lasso_coefficients_dataframe](enc_images\lasso_coefficients_dataframe.png)
+![lasso_coefficients_dataframe](enc_images//lasso_coefficients_dataframe.png)
 
 ````python
 
@@ -932,7 +932,7 @@ fig = px.line(coefficients_lasso, x = 'Feature', y = ['Lasso1', 'Lasso2', 'Lasso
 fig.show()
 ````
 
-![lasso_coefficients_plot](enc_images\lasso_coefficients_plot.png)
+![lasso_coefficients_plot](enc_images//lasso_coefficients_plot.png)
 
 ### How to display image without axis
 
@@ -997,7 +997,7 @@ plt.imshow(faces.images[109], cmap = cmc.batlow)
 # showing an image of _labeled_faces_in_the_wild_dataset with colormap batlow
 # and without axis
 ````
-![face_in_batlow_colors](enc_images\face_in_batlow_colors.png)
+![face_in_batlow_colors](enc_images//face_in_batlow_colors.png)
 
 ### How to display confusion matrix of a classification model
 
