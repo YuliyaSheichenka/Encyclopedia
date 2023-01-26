@@ -1,6 +1,4 @@
-
-
-# ENCYCLOPEDIA
+# A Short and Practical Encyclopedia of Python (and other things) for Data Science
 
 template to use for examples of code:
 ```python
