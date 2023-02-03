@@ -981,7 +981,7 @@ for i, axi in enumerate(ax.flat):
 
 ````
 
-### How to use scientific perceptually uniform color maps of Fabio Crameri (batlow etc)
+### How to use scientific perceptually uniform color maps of Fabio Crameri (batlow etc) in matplotlib:
 
 ````python
 
@@ -998,6 +998,9 @@ plt.imshow(faces.images[109], cmap = cmc.batlow)
 # and without axis
 ````
 ![face_in_batlow_colors](enc_images//face_in_batlow_colors.png)
+
+### How to use scientific perceptually uniform color maps of Fabio Crameri (batlow etc) in plotly:
+(To add)
 
 ### How to display confusion matrix of a classification model
 
