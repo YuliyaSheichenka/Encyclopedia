@@ -219,7 +219,7 @@ len(dictionary)
 
 ## Pandas (dataframes)
 
-### How to avoid getting "Unnamed:0" column when opening a .csv file
+### How to avoid getting "Unnamed:0" column when opening a .csv file you previously saved
 
 ````python
 
@@ -387,7 +387,16 @@ dataset['Column_name'].nunique()
 df = df.drop(df[df["mileage"]==-64].index)
 # Here, the row to drop contained value -64 in the colum "mileage". We use the index of the row in the dataframe
 # to indicate which row should be dropped.
+
 ````
+
+### How to drop rows with null value in a certain column
+````python
+df_income = df.dropna(subset=['income'])
+# Here, the initial dataframe "df" contained a lot of null values in the "income" column. 
+# The "subset" argument allows specifying the name of the column of interest so that the rows where the column contains null values could be dropped.
+````
+
 
 ### How to select from dataframe values that satisfy a certain condition (with mask)
 
@@ -411,6 +420,30 @@ useful_values_list = dataframe.loc[mask, 'Column_with_values_of_interest'].to_li
 # You can also save the values of interest as a list.
 
 ````
+
+### How to check if dataframe has columns with mixed data types
+
+````python
+def cols_with_mixed_data_types(df):
+# function for determining if there are multiple data types in a pandas dataframe:
+    for column in df.columns:
+        if len(df[column].map(type).unique())>1:
+            print(f"{column}: {df[column].map(type).unique()}")
+
+# calling the function:
+cols_with_mixed_data_types(my_df)
+
+# example of output:
+# field: [<class 'str'> <class 'float'>]
+# undergra: [<class 'float'> <class 'str'>]
+# mn_sat: [<class 'float'> <class 'str'>]
+# tuition: [<class 'float'> <class 'str'>]
+# from: [<class 'str'> <class 'float'>]
+# zipcode: [<class 'str'> <class 'float'>]
+# income: [<class 'str'> <class 'float'>]
+````
+
+
 ### How to convert a column with timestamp values to a column with datetime values
 
 ````python
@@ -429,7 +462,7 @@ timestamp_to_datetime(df_name, column_name)
 ### How to convert a column with string values to a column with float values
 
 ````python
-df['colum'] = df['column'].astype(float)
+df['column'] = df['column'].astype(float)
 
 ````
 
@@ -439,6 +472,9 @@ df['colum'] = df['column'].astype(float)
 df['col1'].apply(lambda x: "Yes" if x == 1 else "No") # [[ x = df['col1'][i] ]]
 
 ```
+
+### How to use groupby on two columns
+
 
 ## Numpy (arrays)
 
@@ -569,12 +605,21 @@ dataset.isnull().any()
 
 ```
 
-### How to count the number of missing values per column
+### How to count the number of missing values in a given column
+
+````python
+
+dataset["column_of_interest"].isnull().sum()
+# returns the number of missing values
+````
+
+
+### How to count the number of missing values for all columns of a dataframe
 ```python
 
 dataset.isnull().sum() 
 
-# returns pandas.core.series.Series
+# returns pandas.core.series.Series : a list of columns and, for each column, a corresponding number of missing values.
 
 ```
 
