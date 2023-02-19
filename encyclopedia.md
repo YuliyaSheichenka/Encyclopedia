@@ -1103,7 +1103,28 @@ Result of the above code:
 
 ![boxplot_ad_hoc_colors](enc_images//boxplot_ad_hoc_colors.png)
 
-## GitHub 
+##  Google Colab
+
+### How to download multiple files or a folder from Google Colab?
+
+````python
+# Create a .zip archive for the folder you want to download
+#  (Indicate the name of the folder you want to download and the desired name for the zip archive in the code below)
+!zip -r /content/Archive_Name.zip /content/Name_of_Folder_to_Zip
+
+# Downolad the .zip file:
+from google.colab import files
+files.download("/content/Archive_Name.zip")
+````
+
+## Git and GitHub 
+
+### How to delete .git from a local folder
+Get GitBash terminal in the folder where a git repository was initiated, then run the command in the terminal:
+rm -fr .git
+
+After that, if you try to run any git command (ex. git status), you will receive the following message:
+fatal: not a git repository
 
 ## Docker, images, deployment
 
