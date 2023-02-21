@@ -219,6 +219,23 @@ len(dictionary)
 
 ## Pandas (dataframes)
 
+### How to read a .csv file
+
+````python
+
+df = pd.read_csv("/path_to_file/file.csv")
+
+````
+
+### How to read a .csv file from a link
+
+````python
+
+url = 'https://bucketname.s3.eu-west-3.amazonaws.com/file_name.csv'
+df = pd.read_csv(url)
+
+````
+
 ### How to avoid getting "Unnamed:0" column when opening a .csv file you previously saved
 
 ````python
@@ -388,6 +405,13 @@ df = df.drop(df[df["mileage"]==-64].index)
 # Here, the row to drop contained value -64 in the colum "mileage". We use the index of the row in the dataframe
 # to indicate which row should be dropped.
 
+````
+
+### How to obtain a list indexes of rows where value in a certain column is missing
+
+````python
+no_score_indexes = df["score"][df["score"].isnull()].index
+# Here, we store in the variable "no_score_indexes" the indexes of rows where the value in the "score" column in missing.
 ````
 
 ### How to drop rows with null value in a certain column
@@ -1125,6 +1149,94 @@ rm -fr .git
 
 After that, if you try to run any git command (ex. git status), you will receive the following message:
 fatal: not a git repository
+
+### How to keep your keys or credentials secure when pushing code on GitHub
+
+Never push files with your credentials (AWS in particular!), logins, passwords, keys, private emails visible in your code or any other place. There are bots that search for such information automatically, and, if you've pushed code with your keys to a public repository on GitHub - even if you notice your mistake immediately - there is good probability that your keys have already been harvested. The best thing to do is to immediately change the passwords to the compromised account or to delete the account.
+
+To avoid problems, *never leave in your code lines like this:* (all keys below are fictional, do not worry ;) )
+
+````python
+
+# Do not do this!
+response = requests.get(f"https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude=current,minutely,hourly&units=metric&appid=1d5g8666ddsgsvsdsokv98")
+# Here, 1d5g8666ddsgsvsdsokv98 is an API key that is visible in the line of code. If you push this code to GitHub,
+# someone may see it and use it for their purposes. If it's a paid API, you lose money.
+````
+*How to keep keys safe:*
+(A retelling of a very good video tutorial: [Hide API keys in Python scripts using python-dotenv, .env, and .gitignore](https://www.youtube.com/watch?v=YdgIWTYQ69A/))
+
+1) Create a .gitignore file. You can use a template that you find a GitHub or on a site like gitignore.io
+A basic .gitignore file is a list of file extensions. Files with these extensions will be ignored by Git when you push your code.
+
+````python
+
+# Example text in a .gitignore file that will ignore .env files (see below).
+.env
+
+````
+
+2) Modify your code so that the key is stored in a variable:
+
+````python
+
+# This code is still not safe!
+API_KEY = "1d5g8666ddsgsvsdsokv98"
+
+response = requests.get(f"https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude=current,minutely,hourly&units=metric&appid={API_KEY}")
+
+````
+
+3) Create an .env file and put your variable with the associated key in this file (no need for quotes):
+
+````python
+
+API_KEY = 1d5g8666ddsgsvsdsokv98
+
+````
+
+4) Delete your key from your file with code:
+
+````python
+
+API_KEY = 
+
+response = requests.get(f"https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude=current,minutely,hourly&units=metric&appid={API_KEY}")
+
+````
+
+5) Install dotenv library:
+
+````python
+
+!pip install python-dotenv
+
+````
+6) At the beginning of your file with code, add:
+
+````python
+
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+````
+
+7) In your file with code, set the value of your variable that holds the key to the following:
+
+````python
+
+# dotenv takes the value of the variable from the .env file and loads it into the variable in your code
+API_KEY = os.getenv("API_KEY")
+
+response = requests.get(f"https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude=current,minutely,hourly&units=metric&appid={API_KEY}")
+
+````
+8) If you work in a .ipynb notebook: make sure to check your code so that you don't have any lines where you print out your key or some strings (e.g. URLs) that may contain your keys!
+
+That's it!
+
 
 ## Docker, images, deployment
 
