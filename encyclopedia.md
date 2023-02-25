@@ -244,6 +244,13 @@ df.to_csv("df.csv", index=False)
 # When saving the .csv file
 ````
 
+### How to display all columns or all rows of a dataframe
+
+````python
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', None)
+````
+
 ### How to take a sample (a certain number of random rows) from dataframe
 
 ````python
@@ -416,7 +423,7 @@ no_score_indexes = df["score"][df["score"].isnull()].index
 
 ### How to drop rows with null value in a certain column
 ````python
-df_income = df.dropna(subset=['income'])
+df = df.dropna(subset=['income'])
 # Here, the initial dataframe "df" contained a lot of null values in the "income" column. 
 # The "subset" argument allows specifying the name of the column of interest so that the rows where the column contains null values could be dropped.
 ````
@@ -467,6 +474,30 @@ cols_with_mixed_data_types(my_df)
 # income: [<class 'str'> <class 'float'>]
 ````
 
+### How to convert a date in format DD-Mon-YY to datetime
+
+````python
+# Storing dates of holidays as a list of strings
+holidays = ['12-Feb-10', '11-Feb-11', '10-Feb-12', '8-Feb-13', 
+            '10-Sep-10', '9-Sep-11', '7-Sep-12', '6-Sep-13', 
+            '26-Nov-10', '25-Nov-11', '23-Nov-12', '29-Nov-13', 
+            '31-Dec-10', '30-Dec-11', '28-Dec-12', '27-Dec-13']
+
+holidays = pd.to_datetime(holidays, format='%d-%b-%y')
+# %b corresponds to three-letter abreviation of the name of the month
+# %y corresponds to two-digit year format
+
+print(holidays)
+
+````
+# Output:
+DatetimeIndex(['2010-02-12', '2011-02-11', '2012-02-10', '2013-02-08',
+               '2010-09-10', '2011-09-09', '2012-09-07', '2013-09-06',
+               '2010-11-26', '2011-11-25', '2012-11-23', '2013-11-29',
+               '2010-12-31', '2011-12-30', '2012-12-28', '2013-12-27'],
+              dtype='datetime64[ns]', freq=None)
+
+Each date that had the string type in the initial list has been converted to date in timestamp format.
 
 ### How to convert a column with timestamp values to a column with datetime values
 
@@ -1149,6 +1180,14 @@ rm -fr .git
 
 After that, if you try to run any git command (ex. git status), you will receive the following message:
 fatal: not a git repository
+
+### How to create a new git branch
+git checkout -b new_branch
+(This way you immediately switch to the created branch)
+
+### How to switch to an existing git branch
+git checkout -b main
+(Here we switched back to the already existing 'main' branch)
 
 ### How to keep your keys or credentials secure when pushing code on GitHub
 
