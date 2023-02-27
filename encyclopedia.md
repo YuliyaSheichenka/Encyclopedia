@@ -320,6 +320,19 @@ df = pd.DataFrame.from_records(data, columns =['Name', 'Age', 'Height'])
 
 ```
 
+### How to create a dataframe from lists
+
+```python
+
+# Each list contains the values of a future column
+fruits_list = ['Apple', 'Banana', 'Orange', 'Mango']
+price_list = [120, 40, 80, 500]
+
+# List names of columns in the same order as the order of lists inside zip object
+fruits_df = pd.DataFrame(list(zip(fruits_list, price_list )), columns = ['Fruit', 'Price'])
+```
+
+
 ### How to load .json file to python as a list of dictionaries
 
 ````python
@@ -490,7 +503,7 @@ holidays = pd.to_datetime(holidays, format='%d-%b-%y')
 print(holidays)
 
 ````
-# Output:
+Output:
 DatetimeIndex(['2010-02-12', '2011-02-11', '2012-02-10', '2013-02-08',
                '2010-09-10', '2011-09-09', '2012-09-07', '2013-09-06',
                '2010-11-26', '2011-11-25', '2012-11-23', '2013-11-29',
@@ -1188,6 +1201,10 @@ git checkout -b new_branch
 ### How to switch to an existing git branch
 git checkout -b main
 (Here we switched back to the already existing 'main' branch)
+
+### How to see commits on your current working branch
+git log .
+(Outputs commits in the order from the newest to the oldest)
 
 ### How to keep your keys or credentials secure when pushing code on GitHub
 
