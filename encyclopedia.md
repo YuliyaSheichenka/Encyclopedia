@@ -236,6 +236,13 @@ df = pd.read_csv(url)
 
 ````
 
+### How to read an excel file
+
+````python
+
+
+````
+
 ### How to avoid getting "Unnamed:0" column when opening a .csv file you previously saved
 
 ````python
