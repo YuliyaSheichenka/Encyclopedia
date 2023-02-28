@@ -402,6 +402,10 @@ df = pd.DataFrame(values_list, index=index_list, columns=column_list)
 import pandas as pd
   
 df.rename(columns = {'initial_column_name':'desired_column_name'}, inplace = True)
+# Check the column names before renaming. 
+# If the dataframe was created from a series, the column name '0' is in fact an integer, not a string. Use the following synthax in this case:
+
+df.rename(columns = {0 :'desired_column_name'}, inplace = True)
 
 ````
 
@@ -470,6 +474,17 @@ dataframe[dataframe['Column_to_be_tested_for_condition'] != 0]
 useful_values_list = dataframe.loc[mask, 'Column_with_values_of_interest'].to_list()
 # You can also save the values of interest as a list.
 
+````
+
+### How to create a mask with several conditions
+
+````python
+
+df[(df["Day"]==1) & (df["Hour"]==23)]
+# Here we have selected from the 'df' dataframe the rows
+# where values in the column 'Day' are equal to 1
+# and values in the column 'Hour' are equal to 23
+# (the rows selected satisfy both conditions)
 ````
 
 ### How to check if dataframe has columns with mixed data types
@@ -547,6 +562,36 @@ df['column'] = df['column'].astype(float)
 df['col1'].apply(lambda x: "Yes" if x == 1 else "No") # [[ x = df['col1'][i] ]]
 
 ```
+### How to know how many rows have are there for each timestamp
+(Or: you have a dataset where for each event there is a time indicated. You want to know if there were some events that happened at the same time and how their number changes overtime).
+````python
+
+nb_events_by_time = df.groupby(by = "timestamp").size()
+# Returns a pandas series where the index is the timestamp
+# for each timestamp, the corresponding number in the series
+# indicates how many rows there are in the dataframe for this timestamp.
+
+# If you need a dataframe for future use, see below
+````
+![series_grouped_by_timestamp](enc_images/series_grouped_by_timestamp.png)
+
+### How to turn a pandas Series into a DataFrame (ex. after a groupby)
+
+````python
+day_of_week_df = df.groupby(by = "Day_of_Week").size().to_frame().reset_index()
+# The initial dataframe 'df' contained information on multiple events,
+# with a timestamp for each event. 
+# After extracting the day of the week from the timestamp into 'Day_of_Week' columns,
+# we have grouped the dataframe values by day of the week in order to obtain
+# the number of events per day using .size() method.
+# We then convert the resulting pandas series to dataframe with .to_frame() method.
+# The resulting dataframe would have values of the column 'Day_of_Week' as the index.
+# To avoid that, we use .reset_index() method.
+# The resulting dataframe will have "0" as the name of the columns with the number of events.
+# This column will have to be renamed for convenience.
+
+````
+![dataframe_from_series](enc_images/dataframe_from_series.png)
 
 ### How to use groupby on two columns
 
