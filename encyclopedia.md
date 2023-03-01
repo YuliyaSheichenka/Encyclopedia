@@ -509,6 +509,18 @@ cols_with_mixed_data_types(my_df)
 # income: [<class 'str'> <class 'float'>]
 ````
 
+### How to sort a dataframe by values in a column
+ ````python
+
+# Sorting dataframe based on the number of events in 'nb_events' column
+# ascending = False: sorts values in descending order
+df = df.sort_values(by=['nb_events'], ascending=False)
+
+# Resetting index so that the numbers of the rows follow the new order of the rows.
+df.reset_index(inplace=True, drop=True)
+
+````
+
 ### How to convert a date in format DD-Mon-YY to datetime
 
 ````python
