@@ -606,7 +606,29 @@ day_of_week_df = df.groupby(by = "Day_of_Week").size().to_frame().reset_index()
 ![dataframe_from_series](enc_images/dataframe_from_series.png)
 
 ### How to use groupby on two columns
+````python
 
+nb_pickups_df = df.groupby(['Day_of_Week_and_Hour', 'cluster'], sort=False).size().reset_index()
+# This example is taken from my project on the Uber pickups dataset.
+# The dataframe I created contained columns 'Day_of_Week_and_Hour' (ex: Thursday_10_hrs in string format) and
+# 'cluster' that contained the number of a cluster to which a pickup point was attributed by an algorithm.
+# (a pickup point being the place where a Uber driver takes a client).
+# Each row corresponded to one pickup event with geographical coordinates and time known.
+# I wanted to know how many clients belonging a given cluster were picked up by drivers 
+# on a certain hour of a certain day of the week, so I used the .size() method to get
+# the number of rows belonging to a certain time slot AND a certain cluster.
+# sort=False maintains the same order of values in the columns as they were in the initial column. 
+# It was important in this case, because the dataset started on Tuesday midnight, but the automatic sorting
+# during the groupby made the names of the week appear in alphabetical order,
+# so Friday became the first day of the week and Wednesday the last.
+# .reset_index() is used to obtain a dataframe and not a series after groupby.
+# Don't forget the square brackets that contain the list of columns whose values are to be used for groupby.
+
+driver_df = df.groupby(['Day_of_Week_and_Hour', 'cluster'], sort=False).mean(numeric_only=True).reset_index()
+# For the same dataframe and context, I also needed to determine the optimal position of a driver for a given cluster
+# and a given time period. As the dataframe contained geographical coordinates of pickup point, 
+# I calculated the mean for all coordinates of pickup points belonging to the same cluster and the same time period.
+````
 
 ## Numpy (arrays)
 
