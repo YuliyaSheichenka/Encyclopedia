@@ -239,7 +239,7 @@ df = pd.read_csv(url)
 ### How to read an excel file
 
 ````python
-
+df = pd.read_excel(("/path_to_file/file.xlsx"))
 
 ````
 
