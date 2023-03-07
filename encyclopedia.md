@@ -56,6 +56,34 @@ random.randint(0, 10) will return a random number from [0, 1, 2, 3, 4, 5, 6, 7, 
 
 ````
 
+### How to replace all occurrences of a value in a nested list
+
+````python
+# If the value in question is a string:
+L = [['a','bob'],['a','bob'],['a','john']]
+for i, x in enumerate(L):
+    for j, a in enumerate(x):
+        if 'bob' in a:
+            L[i][j] = a.replace('bob', 'b')
+
+print(L)
+# output:
+# [['a', 'b'], ['a', 'b'], ['a', 'john']]
+
+# If the value in question is a float number:
+# (in this example, we replace 0.0 with None)
+L = [[1.0, 0.0],[0.0, 2.36],[1.2, 0.0]]
+for i, x in enumerate(L):
+    for j, a in enumerate(x):
+        if a==0.0:
+            L[i][j] = None
+
+print(L)
+# output:
+# [[1.0, None], [None, 2.36], [1.2, None]]
+
+````
+
 ### How to get text that is found after a certain word or character set (using .split()).
 
 ````python
