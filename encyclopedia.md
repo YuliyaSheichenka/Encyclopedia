@@ -242,9 +242,6 @@ len(dictionary)
 
 ## Imports, libraries
 
-````python
-````
-
 ## Pandas (dataframes)
 
 ### How to read a .csv file
