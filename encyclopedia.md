@@ -1505,3 +1505,18 @@ $ docker run -it -p 8888:8888 -v C:/Study/Jedha/Fullstack/depl_d3_12_12_2022_doc
 # "C:/Study/Jedha/Fullstack/depl_d3_12_12_2022_docker/create_data_science_env/notebooks_host" (before the colon) is the folder on the host machine (global Windows environment) that is to be connected with the folder "notebooks"
 # "datascience" is the name of the image used to create the container.
 ````
+
+### How to stop a running container
+
+````bash
+
+$ docker stop b81023e293f8
+# b81023e293f8 is the ID of the container you want to stop
+````
+
+### "docker build" is not working and you don't know what the problem is
+
+````bash
+DOCKER_BUILDKIT=0 docker build . -t getaround08032023
+# alternative command that allows to see the errors in log
+````
