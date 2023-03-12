@@ -1448,6 +1448,18 @@ docker run -it -v "$(pwd):/home/app" -e PORT=80 -p 4000:80 data_science
 # As soon is the container is started, you will then be able to see your app locally in your web brower
 # at the address http://127.0.0.1:4000/ or http://localhost:4000/ if your global OS is Windows.
 ````
+### How to run a file "run.sh"
+
+In terminal, place yourself in the folder with the file run.sh that you want to execute.
+
+Then type the following command in the terminal and press enter:
+````bash
+
+./run.sh
+
+````
+
+
 
 ### How to run /bin/bash inside a docker container
 
