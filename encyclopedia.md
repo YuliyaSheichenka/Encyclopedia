@@ -177,6 +177,31 @@ print(clean_names)
 
 ````
 
+### How extract a number from a string
+
+````python
+
+import re
+
+my_string_kg = '1,4€kg' # we have a string that contains a number we want to extract
+
+my_number = float(re.search(r'[\d,]+', my_string_kg).group().replace(',', '.'))
+# re.search() method takes (a) a regular search pattern (here: r'[\d,]+') and (b) a string (here: my_string_kg) where the pattern should be searched for. The search proceeds through the string from start to end, stopping at the first match found. The whole pattern should be matched (but not the whole do of the string).
+# r'[\d,]+' : r before a regex pattern means that the string is to be treated as a raw string. This means that all escape codes will be ignored. For example, r'\n' is a two-character string containing '\' and 'n', while '\n' is a one-character string containing a newline.
+# [\d,]+ : square brackets [] are used to indicate a set of characters that should be searched for
+# \d means decimal digits [0-9]
+# so the expression [\d,] means that that the regex pattern includes all decimal digits and a comma. 
+# In the string in the example: search obtains first "1" (which satisfies the pattern) than "," (satisfies the pattern), than "4" (satisfies the pattern), "€" does not satisfy the pattern, the search stops.
+# + means that the pattern must match one or more digits or commas.
+# extracts the part of the string that matches the pattern: "1,4"
+# replace(',', '.') replaces the comma by the point as a decimal separator.
+# float() converts the extracted string "1.4" to a float number.
+
+print(my_number)
+
+# Output: 1.4
+````
+
 ### How to create a function (steps to follow)
 
 1) Check that your code is working on small scale, ex. for one element of a list
