@@ -398,7 +398,7 @@ with open('C:\\Study\\Jedha\\Fullstack\\dmc_19_10_2022\\kayak_project\\result\\b
 
 hotels = json.load(hotels)
 
-# note theat there also exist json.loads() method that is used when json is not a 
+# note theat there also exists json.loads() method that is used when json is not a 
 ````
 
 ### How to create a dataframe from list of dictionaries
