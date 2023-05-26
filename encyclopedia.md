@@ -27,6 +27,23 @@ Which gives the following result:
 ![dating](enc_images//vince-fleming-8kDJohzgeC0-unsplash_cropped.jpg)
 
 Photo by <a href="https://unsplash.com/@vincefleming?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Vince Fleming</a> on <a href="https://unsplash.com/photos/8kDJohzgeC0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+
+## Performance
+
+### How to time the execution of a cell
+
+````python
+# Place the following line at the beginning of a cell (you can choose your own numbers)
+%%timeit -r 5 -n 10
+# %%timeit is a "cell magic". Cell magics are commands in Jupyter notebook that control the behavior of the whole cell
+# In this way, the line of code above allows timing the whole cell.
+# -r 5 (repeats) specifies that the cell should be executed 5 times to get the average execution time.
+# -n 10 (number) indicates that each execution of the cell should be repeated 10 times to get a more accurate measurement
+# There is no obligation to specify these numbers, but beware of big numbers if you want to push your code to github, 
+# the file can get too big to push as usual (information about runs is stored in cache?).
+
+````
+
  
 ## Python itself (pure)
 
@@ -398,7 +415,7 @@ with open('C:\\Study\\Jedha\\Fullstack\\dmc_19_10_2022\\kayak_project\\result\\b
 
 hotels = json.load(hotels)
 
-# note theat there also exists json.loads() method that is used when json is not a 
+# note theat there also exists json.loads() method that is used when json is not a file but a string. 
 ````
 
 ### How to create a dataframe from list of dictionaries
@@ -1131,6 +1148,32 @@ dump(model_name, 'filename.joblib')
 model_name = load('filename.joblib') 
 
 ````
+
+## AWS
+
+### Policy allowing reading and writing to a single S3 bucket
+ ```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": "s3:ListBucket",
+            "Resource": "arn:aws:s3:::yourbucketname"
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": "s3:*Object",
+            "Resource": "arn:aws:s3:::yourbucketname/*"
+        }
+    ]
+}
+```
+
+### How to write a file to an S3 Bucket
+
 
 
 ## DataViz, plots, visualizations
