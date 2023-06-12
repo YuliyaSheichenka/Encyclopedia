@@ -558,7 +558,7 @@ df[(df["Day"]==1) & (df["Hour"]==23)]
 
 ````python
 def cols_with_mixed_data_types(df):
-# function for determining if there are multiple data types in a pandas dataframe:
+# function for determining if there are multiple data types in a pandas dataframe column:
     for column in df.columns:
         if len(df[column].map(type).unique())>1:
             print(f"{column}: {df[column].map(type).unique()}")
@@ -811,7 +811,7 @@ print("Number of columns : {}".format(dataset.shape[1]))
 ```
 
 
-### Null values
+### Missing values (null values)
 
 ```python
 
@@ -825,6 +825,16 @@ dataset.isnull().any()
 # or False (meaning no null values in the column) for each column name.
 
 ```
+
+### How to count the number of empty rows in a dataset
+
+````python
+df.isna().all(axis=1).sum()
+# the function all() returns True if all elements in a row are null (= row is empty)
+# The function sum() counts how many times the function all has returned True.
+# The number returned by this line is therefore the number of empty rows in a dataframe.
+
+````
 
 ### How to count the number of missing values in a given column
 
